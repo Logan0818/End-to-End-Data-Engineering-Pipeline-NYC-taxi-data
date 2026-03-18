@@ -74,47 +74,24 @@ docker compose up
 
 ---
 
-## 📊 Data Model
-
-### Silver Layer
-- Cleaned taxi trip data
-- Added features:
-  - trip_duration
-  - pickup_date
-  - pickup_hour
-
-### Gold Layer
-- Daily aggregations:
-  - total trips
-  - total revenue
-  - avg trip duration
-
----
-
-## 🚀 How to Run
-
-```bash
-docker compose up airflow-init
-docker compose up
-```
 
 Then open Airflow UI:
 
-http://localhost:8080
+ - http://localhost:8080
 
 Trigger DAG:
 
-taxi_end_to_end_pipeline
+ - taxi_end_to_end_pipeline
 
 📅 Automation Logic
 
-Runs monthly
+ - Runs monthly
 
-Automatically back-calculates data (2026 → 2023 offset)
+ - Automatically back-calculates data (2026 → 2023 offset)
 
-Supports manual trigger with:
+ - Supports manual trigger with:
 
-{"year_month": "2023-03"}
+ - {"year_month": "2023-03"}
 
 📈 Dashboard
 
@@ -123,30 +100,30 @@ Supports manual trigger with:
 
 💡 Key Learnings
 
-Built a full medallion architecture pipeline
+ - Built a full medallion architecture pipeline
 
-Integrated Airflow with Spark via Docker
+ - Integrated Airflow with Spark via Docker
 
-Solved real-world issues:
+ - Solved real-world issues:
 
-Docker permissions
+ - Docker permissions
 
-GCS connector setup
+ - GCS connector setup
 
-BigQuery partition conflicts
+ - BigQuery partition conflicts
 
-Implemented automated scheduling and parameterization
+ - Implemented automated scheduling and parameterization
 
 📌 Future Improvements
 
-Incremental loading instead of full refresh
+ - Incremental loading instead of full refresh
 
-Partitioned writes in Spark
+ - Partitioned writes in Spark
 
-Data quality checks (Great Expectations)
+ - Data quality checks (Great Expectations)
 
-CI/CD pipeline
+ - CI/CD pipeline
 
 👤 Author
 
-Logan Liang
+ - Logan Liang
