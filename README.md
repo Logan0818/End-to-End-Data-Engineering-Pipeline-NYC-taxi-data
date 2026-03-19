@@ -101,9 +101,6 @@ docker compose up airflow-init
 docker compose up
 ```
 
----
-
-
 Then open Airflow UI:
 
  - http://localhost:8080
@@ -113,6 +110,8 @@ Trigger DAG:
  - taxi_end_to_end_pipeline
  - Once complete, you will have daily_trip_metrics table in your BigQuery dataset
  - You can now create dashboard using Looker Studio
+
+---
 
 📅 Automation Logic
 
@@ -126,10 +125,13 @@ Trigger DAG:
 
  - {"year_month": "2023-03"}
 
+---
+
 📈 Dashboard
 
 ![Dashboard](https://github.com/Logan0818/End-to-End-Data-Engineering-Pipeline-NYC-taxi-data/blob/37aae6bcae733c5988ed85b195cc347449269d89/taxi%20looker%20studio.png)
 
+---
 
 💡 Key Learnings
 
@@ -145,6 +147,8 @@ Trigger DAG:
 
  - Implemented automated scheduling and parameterization
 
+---
+
 📌 Future Improvements
 
  - Incremental loading instead of full refresh
@@ -154,6 +158,8 @@ Trigger DAG:
  - Data quality checks
 
  - CI/CD pipeline
+
+---
 
 👤 Author
 
