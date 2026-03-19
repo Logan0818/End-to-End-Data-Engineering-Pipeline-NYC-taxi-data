@@ -26,15 +26,16 @@ This project demonstrates a production-style data pipeline:
 - Whether there are patterns or trends that suggest opportunities for targeted promotions
 - To address this, the project builds a modern data pipeline that ingests raw taxi trip data, processes and transforms it into structured datasets, and makes it available for analytics.
 - The pipeline enables:
-1. Identification of low-demand days where business performance is weakest
-2. Analysis of revenue trends over time (daily/monthly)
-3. Data-driven decision-making to evaluate whether promotions or incentives could improve performance
-4. By transforming raw data into actionable insights, this project demonstrates how data engineering can directly support business optimization and strategic planning.
+    1. Identification of low-demand days where business performance is weakest
+    2. Analysis of revenue trends over time (daily/monthly)
+    3. Data-driven decision-making to evaluate whether promotions or incentives could improve performance
+    4. By transforming raw data into actionable insights, this project demonstrates how data engineering can directly support business optimization and strategic planning.
 
 
 ## 🏗️ Architecture
 
-![Architecture](https://github.com/Logan0818/End-to-End-Data-Engineering-Pipeline-NYC-taxi-data/blob/cef54f49999db2ce6f234d62681bad492ea87990/Images/taxi%20architecture%20diagram.png)
+![Architecture](https://github.com/Logan0818/End-to-End-Data-Engineering-Pipeline-NYC-taxi-data/blob/ce31c3f22f3825bc873714eb26addccd0385b483/Images/taxi%20architecture%20diagram.png)
+
 
 Pipeline flow:
 
