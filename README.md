@@ -17,9 +17,24 @@ This project demonstrates a production-style data pipeline:
 
 ---
 
+## Problem Statement
+
+- The goal of this project is to design and implement an end-to-end data pipeline that analyzes New York City taxi trip data to uncover business insights.
+- Taxi companies generate large volumes of trip data daily, but without a structured data pipeline, it is difficult to efficiently analyze trends and identify opportunities for improvement. In particular, stakeholders want to understand:
+    - Which days have the lowest taxi demand
+    - How revenue changes over time
+- Whether there are patterns or trends that suggest opportunities for targeted promotions
+- To address this, the project builds a modern data pipeline that ingests raw taxi trip data, processes and transforms it into structured datasets, and makes it available for analytics.
+- The pipeline enables:
+1. Identification of low-demand days where business performance is weakest
+2. Analysis of revenue trends over time (daily/monthly)
+3. Data-driven decision-making to evaluate whether promotions or incentives could improve performance
+4. By transforming raw data into actionable insights, this project demonstrates how data engineering can directly support business optimization and strategic planning.
+
+
 ## 🏗️ Architecture
 
-![Architecture](images/architecture.png)
+![Architecture](https://github.com/Logan0818/End-to-End-Data-Engineering-Pipeline-NYC-taxi-data/blob/cef54f49999db2ce6f234d62681bad492ea87990/Images/taxi%20architecture%20diagram.png)
 
 Pipeline flow:
 
@@ -34,8 +49,9 @@ Pipeline flow:
 
 ## ⚙️ Tech Stack
 
+- Terraform (IaC)
 - Apache Airflow (Docker)
-- Apache Spark
+- Apache Spark (Docker)
 - Google Cloud Storage (GCS)
 - BigQuery
 - Python
@@ -89,6 +105,8 @@ Trigger DAG:
 
  - Automatically back-calculates data (2026 → 2023 offset)
 
+ - For testing, I have a demo pipeline which runs every 10 minutes and each time run a different month (see taxi_end_to_end_pipeline_demo.py in dags folder)
+
  - Supports manual trigger with:
 
  - {"year_month": "2023-03"}
@@ -104,8 +122,6 @@ Trigger DAG:
 
  - Integrated Airflow with Spark via Docker
 
- - Solved real-world issues:
-
  - Docker permissions
 
  - GCS connector setup
@@ -120,7 +136,7 @@ Trigger DAG:
 
  - Partitioned writes in Spark
 
- - Data quality checks (Great Expectations)
+ - Data quality checks
 
  - CI/CD pipeline
 
