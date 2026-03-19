@@ -83,6 +83,18 @@ Pipeline flow:
 
 ## 🚀 How to Run
 
+Create Google Storage Bucket and BigQuery dataset using Terraform
+ - Create a service account
+ - Generate a new key (json file)
+ - Update the main.tf and variable.tf files under terraform folder to use your google credential
+
+```
+terraform init
+terraform plan
+terraform apply
+```
+In terminal, go to taxi-airflow folder and run below docker commands.
+
 ```bash
 docker compose up airflow-init
 docker compose up
@@ -98,6 +110,8 @@ Then open Airflow UI:
 Trigger DAG:
 
  - taxi_end_to_end_pipeline
+ - Once complete, you will have daily_trip_metrics table in your BigQuery dataset
+ - You can now create dashboard using Looker Studio
 
 📅 Automation Logic
 
