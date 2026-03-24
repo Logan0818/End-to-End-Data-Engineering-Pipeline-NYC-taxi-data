@@ -85,16 +85,33 @@ Pipeline flow:
 ## 🚀 How to Run
 
 Create Google Storage Bucket and BigQuery dataset using Terraform
- - Create a service account
- - Generate a new key (json file)
- - Update the main.tf and variable.tf files under terraform folder to use your google credential
+ - Create a service account with Storage Admin & BigQuery Admin access
+ - Generate a new key (json file) and name it as my-creds.json
+ - Create a folder name "keys" under terraform folder and put my-creds.json in there
+ - Update the main.tf and variable.tf files under terraform folder to reference your google project, google storage bucket and bigquery dataset name
 
 ```
 terraform init
 terraform plan
 terraform apply
 ```
-In terminal, go to taxi-airflow folder and run below docker commands.
+## First-time setup
+
+- Setup Airflow User ID and provide access to Airflow Scheduler to create folder in ./logs
+
+Go to taxi-airflow folder. <br>
+Run the following in your terminal before starting Airflow:
+
+```bash
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+mkdir -p logs dags plugins config
+sudo chown -R $(id -u):0 logs dags plugins config
+sudo chmod -R 775 logs dags plugins config
+docker compose up airflow-init
+docker compose up -d
+```
+
+In terminal, run below docker commands.
 
 ```bash
 docker compose up airflow-init
