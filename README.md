@@ -121,6 +121,10 @@ In terminal, run below docker commands.
 
 ```bash
 docker compose up airflow-init
+```
+
+Open another terminal
+```bash
 docker compose up
 ```
 
@@ -133,6 +137,8 @@ Trigger DAG:
  - taxi_end_to_end_pipeline
  - Once complete, you will have daily_trip_metrics table in your BigQuery dataset
  - You can now create dashboard using Looker Studio
+ - The taxi_end_to_end_pipeline.py dag will run 2023 January data first, and then runs 2023 February next month
+ - For testing purpose, you can update and run the taxi_end_to_end_pipeline_demo.py dag, it will run every 10 minutes so you can see the pipeline running for differnt month data. This will only works for 6 months for demo purpose. Remember to stop the Airflow.
 
 ---
 

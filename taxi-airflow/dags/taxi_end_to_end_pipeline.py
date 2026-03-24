@@ -41,7 +41,7 @@ def get_year_month():
 #     logical_date = context["logical_date"]
 
 #     base = datetime(2023, 1, 1)
-#     offset = logical_date.minute // 10  # 每10分鐘一個月
+#     offset = logical_date.minute // 10  # run every 10 minutes for another month, testing purpose
 
 #     target_date = base + relativedelta(months=offset)
 #     return target_date.strftime("%Y-%m")
@@ -130,8 +130,8 @@ def upload_to_gcs():
 with DAG(
     dag_id="taxi_end_to_end_pipeline",
     start_date=datetime(2026, 3, 1),
-    # schedule="@monthly",
-    schedule="*/10 * * * *",
+    schedule="@monthly",
+    # schedule="*/10 * * * *",
     catchup=False,
     tags=["taxi", "bronze", "silver", "gold", "bigquery"],
 ) as dag:
