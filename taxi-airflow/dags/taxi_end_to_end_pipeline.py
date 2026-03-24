@@ -13,38 +13,38 @@ BASE_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 PROJECT_ID = "dtc-de-course-2026"
 BQ_DATASET = "project_dataset"
 BQ_TABLE = "daily_trip_metrics"
-MONTH_OFFSET = 36
+MONTH_OFFSET = 38
 
-
-# def get_year_month():
-#     """
-#     Priority:
-#     1. dag_run.conf["year_month"] if provided manually
-#     2. logical_date minus MONTH_OFFSET months
-
-#     Example:
-#     2026-03 -> 2023-02
-#     2026-04 -> 2023-03
-#     """
-#     context = get_current_context()
-#     dag_run = context.get("dag_run")
-#     logical_date = context["logical_date"]
-
-#     if dag_run and dag_run.conf and dag_run.conf.get("year_month"):
-#         return dag_run.conf.get("year_month")
-
-#     target_date = logical_date - relativedelta(months=MONTH_OFFSET)
-#     return target_date.strftime("%Y-%m")
 
 def get_year_month():
+    """
+    Priority:
+    1. dag_run.conf["year_month"] if provided manually
+    2. logical_date minus MONTH_OFFSET months
+
+    Example:
+    2026-03 -> 2023-01
+    2026-04 -> 2023-02
+    """
     context = get_current_context()
+    dag_run = context.get("dag_run")
     logical_date = context["logical_date"]
 
-    base = datetime(2023, 1, 1)
-    offset = logical_date.minute // 10  # 每10分鐘一個月
+    if dag_run and dag_run.conf and dag_run.conf.get("year_month"):
+        return dag_run.conf.get("year_month")
 
-    target_date = base + relativedelta(months=offset)
+    target_date = logical_date - relativedelta(months=MONTH_OFFSET)
     return target_date.strftime("%Y-%m")
+
+# def get_year_month():
+#     context = get_current_context()
+#     logical_date = context["logical_date"]
+
+#     base = datetime(2023, 1, 1)
+#     offset = logical_date.minute // 10  # 每10分鐘一個月
+
+#     target_date = base + relativedelta(months=offset)
+#     return target_date.strftime("%Y-%m")
 
 def build_file_info(year_month: str):
     file_name = f"yellow_tripdata_{year_month}.parquet"

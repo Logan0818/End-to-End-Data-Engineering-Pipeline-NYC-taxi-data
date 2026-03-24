@@ -88,7 +88,7 @@ Create Google Storage Bucket and BigQuery dataset using Terraform
  - Create a service account with Storage Admin & BigQuery Admin access
  - Generate a new key (json file) and name it as my-creds.json
  - Create a folder name "keys" under terraform folder and put my-creds.json in there
- - Update the main.tf and variable.tf files under terraform folder to reference your google project, google storage bucket and bigquery dataset name
+ - Update the main.tf and variable.tf files under terraform folder to reference your google project, google storage bucket
 
 ```
 terraform init
@@ -107,9 +107,15 @@ echo -e "AIRFLOW_UID=$(id -u)" > .env
 mkdir -p logs dags plugins config
 sudo chown -R $(id -u):0 logs dags plugins config
 sudo chmod -R 775 logs dags plugins config
-docker compose up airflow-init
-docker compose up -d
 ```
+## Run Airflow and start the pipeline
+
+Update below fields with your google resources in the taxi_end_to_end_pipeline.py dag
+- BUCKET_NAME
+- PROJECT_ID 
+
+Update bucket name field for bronze_to_silver.py and silver_to_gold.py in the spark_jobs folder. <br>
+
 
 In terminal, run below docker commands.
 
