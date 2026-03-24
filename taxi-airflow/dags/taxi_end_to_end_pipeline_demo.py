@@ -8,33 +8,14 @@ import os
 import requests
 from google.cloud import storage
 
-BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan"
+BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan" # update this to your own GCS bucket name
 BASE_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data"
-PROJECT_ID = "dtc-de-course-2026"
+PROJECT_ID = "dtc-de-course-2026" # update this to your project ID
 BQ_DATASET = "project_dataset"
 BQ_TABLE = "daily_trip_metrics"
 MONTH_OFFSET = 36
 
 
-# def get_year_month():
-#     """
-#     Priority:
-#     1. dag_run.conf["year_month"] if provided manually
-#     2. logical_date minus MONTH_OFFSET months
-
-#     Example:
-#     2026-03 -> 2023-02
-#     2026-04 -> 2023-03
-#     """
-#     context = get_current_context()
-#     dag_run = context.get("dag_run")
-#     logical_date = context["logical_date"]
-
-#     if dag_run and dag_run.conf and dag_run.conf.get("year_month"):
-#         return dag_run.conf.get("year_month")
-
-#     target_date = logical_date - relativedelta(months=MONTH_OFFSET)
-#     return target_date.strftime("%Y-%m")
 def get_year_month():
     context = get_current_context()
     logical_date = context["logical_date"]
@@ -129,7 +110,6 @@ def upload_to_gcs():
 with DAG(
     dag_id="taxi_end_to_end_pipeline",
     start_date=datetime(2026, 3, 1),
-    # schedule="@monthly",
     schedule="*/10 * * * *",
     catchup=False,
     tags=["taxi", "bronze", "silver", "gold", "bigquery"],

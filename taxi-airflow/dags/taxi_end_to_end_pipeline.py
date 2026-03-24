@@ -8,9 +8,9 @@ import os
 import requests
 from google.cloud import storage
 
-BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan"
+BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan" # update this to your own GCS bucket name
 BASE_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data"
-PROJECT_ID = "dtc-de-course-2026"
+PROJECT_ID = "dtc-de-course-2026" # update this to your project ID
 BQ_DATASET = "project_dataset"
 BQ_TABLE = "daily_trip_metrics"
 MONTH_OFFSET = 38
@@ -36,15 +36,6 @@ def get_year_month():
     target_date = logical_date - relativedelta(months=MONTH_OFFSET)
     return target_date.strftime("%Y-%m")
 
-# def get_year_month():
-#     context = get_current_context()
-#     logical_date = context["logical_date"]
-
-#     base = datetime(2023, 1, 1)
-#     offset = logical_date.minute // 10  # run every 10 minutes for another month, testing purpose
-
-#     target_date = base + relativedelta(months=offset)
-#     return target_date.strftime("%Y-%m")
 
 def build_file_info(year_month: str):
     file_name = f"yellow_tripdata_{year_month}.parquet"
@@ -131,7 +122,6 @@ with DAG(
     dag_id="taxi_end_to_end_pipeline",
     start_date=datetime(2026, 3, 1),
     schedule="@monthly",
-    # schedule="*/10 * * * *",
     catchup=False,
     tags=["taxi", "bronze", "silver", "gold", "bigquery"],
 ) as dag:

@@ -97,7 +97,7 @@ from pyspark.sql.functions import (
     round
 )
 
-BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan"
+BUCKET_NAME = "dtc-de-2026-taxi-data-lake-logan" # update this to your own GCS bucket name
 
 
 def parse_args():
